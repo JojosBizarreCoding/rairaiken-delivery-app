@@ -1,0 +1,24 @@
+{
+  "name": "rairaiken-delivery-app",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/JojosBizarreCoding/rairaiken-delivery-app#readme",
+  "bugs": {
+    "url": "https://github.com/JojosBizarreCoding/rairaiken-delivery-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JojosBizarreCoding/rairaiken-delivery-app.git"
+  },
+  "license": "MIT",
+  "author": "JoJosBizarreCoding, NexusSnake, JeaV2",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "electron": "^39.2.6"
+  }
+}
