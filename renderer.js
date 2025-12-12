@@ -1,0 +1,2 @@
+const info = document.getElementById('info');
+info.innerText = `Node.js version: ${window.versions.node()}\nChrome version: ${window.versions.chrome()}\nElectron version: ${window.versions.electron()}`;

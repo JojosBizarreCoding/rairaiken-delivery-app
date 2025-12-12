@@ -1,18 +1,35 @@
-const { app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron')
 
 console.log("Hello, World!");
 
 app.on('ready', () => {
-  createWindow()
-})
+  createWindow();
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+});
 
 function createWindow() {
 
-// In the main process.
-  const win = new BrowserWindow({ width: 428, height: 926, resizable: false });
+  // In the main process.
+  const win = new BrowserWindow({
+    width: 428, height: 926, resizable: false, webPreferences: {
+      preload: __dirname + '/preload.js'
+    }
+  });
   win.setAspectRatio(9 / 16);
   win.setFullScreenable(false);
+  win.setMenuBarVisibility(false);
+  win.webContents.openDevTools();
 
-  // Load a remote URL
-  win.loadURL('https://jeav2.github.io/')
+  win.loadFile('index.html');
 }
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit();
+  }
+});
