@@ -9,7 +9,7 @@ app.on('ready', () => {
 function createWindow() {
 
 // In the main process.
-  const win = new BrowserWindow({ width: 428, height: 926 });
+  const win = new BrowserWindow({ width: 428, height: 926, resizable: false });
   win.setAspectRatio(9 / 16);
   win.setFullScreenable(false);
 
