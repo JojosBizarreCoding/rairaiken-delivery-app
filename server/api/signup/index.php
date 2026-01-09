@@ -23,7 +23,7 @@ try {
         ':naam' => $data['naam'],
         ':telefoonnummer' => $data['telefoonnummer'],
         ':email' => $data['email'],
-        ':wachtwoord' => sha1($data['wachtwoord']),
+        ':wachtwoord' => password_hash($data['wachtwoord'], PASSWORD_BCRYPT),
         ':straatnaam' => $data['straatnaam'],
         ':huisnummer' => $data['huisnummer'],
         ':postcode' => $data['postcode']

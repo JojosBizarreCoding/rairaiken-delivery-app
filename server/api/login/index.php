@@ -16,21 +16,19 @@ if (!isset($data['email'], $data['wachtwoord'])) {
     exit;
 }
 try {
-    $wachtwoord = sha1($data['wachtwoord']);
-    $stmt = $pdo->prepare("SELECT * FROM Gebruikers WHERE Email = :email AND Wachtwoord = :wachtwoord");
+    $stmt = $pdo->prepare("SELECT * FROM Gebruikers WHERE Email = :email");
     $stmt->execute([
-        ':email' => $data['email'],
-        ':wachtwoord' => $wachtwoord
+        ':email' => $data['email']
     ]);
     $gebruiker = $stmt->fetch();
-    if ($gebruiker) {
+    if ($gebruiker && password_verify($data['wachtwoord'], $gebruiker['Wachtwoord'])) {
         echo json_encode(['message' => 'Login successful', 'user' => $gebruiker]);
         session_start();
         $_SESSION['GebruikerID'] = $gebruiker['GebruikerID'];
         $_SESSION['Naam'] = $gebruiker['Naam'];
     } else {
         http_response_code(401);
-        echo json_encode(['error' => 'Invalid email or password', 'email' => $data['email'], 'wachtwoord' => $data['wachtwoord']]);
+        echo json_encode(['error' => 'Invalid email or password', 'email' => $data['email']]);
     }
 } catch (Exception $e) {
     http_response_code(500);
