@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `Gerechten` (
   `Naam` VARCHAR(100) NOT NULL,
   `Beschrijving` TEXT,
   `Ingredienten` TEXT,
-  `Alergenen` TEXT,
+  `Allergenen` TEXT,
   PRIMARY KEY (`GerechtID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
