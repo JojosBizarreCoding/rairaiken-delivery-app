@@ -16,7 +16,7 @@ if (!isset($data['email'], $data['wachtwoord'])) {
     exit;
 }
 try {
-    $stmt = $pdo->prepare("SELECT * FROM Gebruikers WHERE Email = :email");
+    $stmt = $pdo->prepare("SELECT Wachtwoord, Naam, GebruikerID FROM Gebruikers WHERE Email = :email");
     $stmt->execute([
         ':email' => $data['email']
     ]);
