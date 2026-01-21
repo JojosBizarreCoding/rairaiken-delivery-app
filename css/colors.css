@@ -1,0 +1,18 @@
+@property --main-bg-color {
+    syntax: "<color>";
+  inherits: false;
+  initial-value: #403048;
+}
+
+@property --card-bg-color {
+    syntax: "<color>";
+  inherits: false;
+  initial-value: #E0C8A8;
+}
+
+@property --secondary-color {
+    syntax: "<color>";
+  inherits: false;
+  initial-value: #C0A840;
+}
+

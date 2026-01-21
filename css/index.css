@@ -1,0 +1,20 @@
+@import url('./colors.css');
+
+body {
+    background-color: var(--main-bg-color);
+};
+/* Ik weet niet precies wat er aan de hand is, maar zonder deze card class werkt de css niet zoals het hoort. */
+.card {
+}
+
+#override {
+    width: 45%;
+    margin: 10px;
+    background-color: var(--card-bg-color);
+}
+
+.btn-primary {
+    background-color: var(--secondary-color) !important;
+    color: black !important;
+    float: right;
+}
