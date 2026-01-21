@@ -4,21 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
     <title>Document</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/index.js" defer></script>
     <script src="./renderer.js" defer></script>
-</head>
+     </head>
 
 <body>
-    <div class="container">
-        <div class="row col-12 text-center">
-            <h1>Hello From electron!</h1>
-            <p id="info"></p>
-        </div>
-    </div>
+
+<div class="container">
+   <div class="row justify-content-between" id="cardContainer">
+   </div>
+</div>
+
 </body>
 
 </html>
