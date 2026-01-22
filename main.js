@@ -25,7 +25,7 @@ function createWindow() {
   win.setMenuBarVisibility(false);
   win.webContents.openDevTools();
 
-  win.loadFile('index.html');
+  win.loadFile('./html/index.html');
 }
 
 app.on('window-all-closed', () => {

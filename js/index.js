@@ -16,14 +16,16 @@ async function getData() {
 
     for (let gerecht of gerechten) {
       const cardHTML = `<div class="card" id="override">
-            <img src="./${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
-            <div class="card-body">
+            <img src="../${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
+            <div class="card-body d-flex flex-column justify-content-between">
+            <div>
                 <h5 class="card-title">${gerecht.Naam}</h5>
                 <p class="card-text">${gerecht.Beschrijving}</p>
+            </div>
                 <a href="#" class="btn btn-primary">Bestel</a>
             </div>
         </div>`;
-      const imgHTML = `<img src="./img/${images[0+i]}" alt="...">`;
+      const imgHTML = `<img src="../img/${images[0+i]}" alt="...">`;
       counter += 1;
         console.log(counter);
 
