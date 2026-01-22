@@ -1,8 +1,14 @@
 @import url('./colors.css');
 
+@font-face {
+    font-family: fauxjapanese;
+    src: url('../assets/japan-kimono-font/fauxjapanese.otf'); 
+  }
+
 body {
     background-color: var(--main-bg-color);
 };
+
 /* Ik weet niet precies wat er aan de hand is, maar zonder deze card class werkt de css niet zoals het hoort. */
 .card {
 }
@@ -17,4 +23,19 @@ body {
     background-color: var(--secondary-color) !important;
     color: black !important;
     float: right;
+}
+
+.navbar {
+    background-color: var(--main-bg-color);
+    border-bottom: 2px solid black;
+}
+
+.nav-link {
+    color: var(--secondary-color) !important;
+}
+
+.title {
+    color: white;
+    font-family: "fauxjapanese", sans-serif;
+    margin: 10px;
 }

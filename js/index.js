@@ -1,5 +1,5 @@
 const container = document.getElementById('cardContainer');
-const images = ["8isk6jv0qy4g1.png", "481708804_18045846239356062_5904598843501618291_n.jpg"];
+const images = ["8isk6jv0qy4g1.png", "481708804_18045846239356062_5904598843501618291_n.jpg", "inazuma-eleven-ina11.png", "nwr83lyuqtje1.jpeg"];
 const url = 'https://102710.stu.sd-lab.nl/rairaiken/api/gerechten/';
 
 async function getData() {
@@ -16,7 +16,7 @@ async function getData() {
 
     for (let gerecht of gerechten) {
       const cardHTML = `<div class="card" id="override">
-            <img src="./${gerecht.Plaatje}" class="card-img-top" alt="...">
+            <img src="./${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
             <div class="card-body">
                 <h5 class="card-title">${gerecht.Naam}</h5>
                 <p class="card-text">${gerecht.Beschrijving}</p>
@@ -27,8 +27,8 @@ async function getData() {
       counter += 1;
         console.log(counter);
 
-        if (counter >= 2)
-          {if (i >= images.length){
+        if (counter >= 6){
+          if (i > images.length){
             i = 0;
             container.innerHTML += `${cardHTML}${imgHTML}`
           } else {
@@ -36,8 +36,6 @@ async function getData() {
             i += 1;
             container.innerHTML += `${cardHTML}${imgHTML}`
           }
-          
-          
 
         } else {
     container.innerHTML += cardHTML; }
