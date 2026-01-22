@@ -1,0 +1,7 @@
+@import url(colors.css);
+
+.btn-primary {
+    background-color: var(--secondary-color) !important;
+    color: black !important;
+    border: none !important;
+}

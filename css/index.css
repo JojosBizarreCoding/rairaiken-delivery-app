@@ -1,4 +1,5 @@
-@import url('./colors.css');
+@import url('colors.css');
+@import url('buttons.css');
 
 @font-face {
     font-family: fauxjapanese;
@@ -14,15 +15,10 @@ body {
 }
 
 #override {
-    width: 45%;
+    width: 12rem;
     margin: 10px;
     background-color: var(--card-bg-color);
-}
-
-.btn-primary {
-    background-color: var(--secondary-color) !important;
-    color: black !important;
-    float: right;
+    padding: 0;
 }
 
 .navbar {
@@ -32,6 +28,11 @@ body {
 
 .nav-link {
     color: var(--secondary-color) !important;
+}
+
+.card-img-top {
+    height: 12rem !important;
+    object-fit: fill !important;
 }
 
 .title {
