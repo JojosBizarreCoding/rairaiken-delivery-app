@@ -1,10 +1,7 @@
 @import url('colors.css');
 @import url('buttons.css');
-
-@font-face {
-    font-family: fauxjapanese;
-    src: url('../assets/japan-kimono-font/fauxjapanese.otf'); 
-  }
+@import url('navbar.css');
+@import url('fonts.css');
 
 body {
     background-color: var(--main-bg-color);
@@ -19,15 +16,6 @@ body {
     margin: 10px;
     background-color: var(--card-bg-color);
     padding: 0;
-}
-
-.navbar {
-    background-color: var(--main-bg-color);
-    border-bottom: 2px solid black;
-}
-
-.nav-link {
-    color: var(--secondary-color) !important;
 }
 
 .card-img-top {

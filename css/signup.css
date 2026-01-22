@@ -1,7 +1,29 @@
 @import url(colors.css);
+@import url('navbar.css');
 
+body {
+    overflow: hidden;
+    background-color: var(--main-bg-color);
+}
+
+.form-container {
+    font-size: 2rem;
+    background-color: var(--card-bg-color) !important;
+    margin: auto !important;
+    padding: 3rem;
+    border-radius: 1rem;
+}
 .btn-primary {
     background-color: var(--secondary-color) !important;
     color: black !important;
     border: none !important;
 }
+
+.vertical-center {
+margin: 1rem;
+}
+
+#emailHelp {
+    font-size: 1rem;
+}
+

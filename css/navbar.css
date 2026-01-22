@@ -1,0 +1,8 @@
+.navbar {
+    background-color: var(--main-bg-color);
+    border-bottom: 2px solid black;
+}
+
+.nav-link {
+    color: var(--secondary-color) !important;
+}
