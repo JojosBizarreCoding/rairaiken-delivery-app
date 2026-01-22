@@ -1,5 +1,5 @@
 const container = document.getElementById('cardContainer');
-const images = ["8isk6jv0qy4g1.png", "481708804_18045846239356062_5904598843501618291_n.jpg", "inazuma-eleven-ina11.png", "nwr83lyuqtje1.jpeg"];
+const images = ["ie11cats.jpg", "ie11cats2.png", "ie11joypolis.jpg", "ie11ramen.png"];
 const url = 'https://102710.stu.sd-lab.nl/rairaiken/api/gerechten/';
 
 async function getData() {
@@ -16,7 +16,7 @@ async function getData() {
 
     for (let gerecht of gerechten) {
       const cardHTML = `<div class="card" id="override">
-            <img src="../${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
+            <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
             <div class="card-body d-flex flex-column justify-content-between">
             <div>
                 <h5 class="card-title">${gerecht.Naam}</h5>
@@ -25,7 +25,7 @@ async function getData() {
                 <a href="#" class="btn btn-primary">Bestel</a>
             </div>
         </div>`;
-      const imgHTML = `<img src="../img/${images[0+i]}" alt="...">`;
+      const imgHTML = `<img src="../img/banners/${randomImage()}" alt="...">`;
       counter += 1;
         console.log(counter);
 
@@ -48,3 +48,8 @@ async function getData() {
 }
 
 getData(url);
+
+function randomImage() {
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
+}
