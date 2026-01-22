@@ -12,7 +12,7 @@ body {
 }
 
 #override {
-    width: 12rem;
+    width: 45%;
     margin: 10px;
     background-color: var(--card-bg-color);
     padding: 0;
