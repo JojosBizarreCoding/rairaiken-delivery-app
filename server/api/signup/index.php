@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $data = json_decode(file_get_contents('php://input'), true);
 if (!isset($data['naam'], $data['telefoonnummer'], $data['email'], $data['wachtwoord'], $data['straatnaam'], $data['huisnummer'], $data['postcode'])) {
     http_response_code(400);
-    echo json_encode(['error' => 'Invalid input']);
+    echo json_encode(['error' => 'Ongeldige invoer']);
     exit;
 }
 try {
@@ -28,8 +28,8 @@ try {
         ':huisnummer' => $data['huisnummer'],
         ':postcode' => $data['postcode']
     ]);
-    echo json_encode(['message' => 'User registered successfully']);
+    echo json_encode(['message' => 'Gebruiker succesvol geregistreerd']);
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+    echo json_encode(['error' => 'Databasefout: ' . $e->getMessage()]);
 }

@@ -15,7 +15,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
     default:
         http_response_code(405);
-        echo json_encode(['error' => 'Method not allowed']);;
+        echo json_encode(['error' => 'Methode niet toegestaan']);;
         exit;
 }
 
@@ -87,7 +87,7 @@ function getBestellingen(PDO $pdo) {
        echo json_encode($bestellingen);
     } catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+        echo json_encode(['error' => 'Database fout: ' . $e->getMessage()]);
     }
 }
 
@@ -124,6 +124,6 @@ function createBestelling($pdo, $data) {
     }
     catch (PDOException $e) {
         http_response_code(500);
-        echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+        echo json_encode(['error' => 'Database fout: ' . $e->getMessage()]);
     }
 }
