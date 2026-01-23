@@ -5,3 +5,11 @@
 #aantal {
     width: 3rem;
 }
+
+.return {
+    position: absolute;
+    right: 1rem;
+    font-size: 2rem;
+    color: red;
+    text-decoration: none;
+}

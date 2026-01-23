@@ -1,6 +1,7 @@
 @import url(colors.css);
 @import url('navbar.css');
 @import url('buttons.css');
+@import url('fonts.css');
 
 ::-webkit-scrollbar {
     display: none;
@@ -31,6 +32,12 @@ margin: 1rem;
     font-size: 1rem;
 }
 
+.login {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: white;
+    font-family: "staatliches", sans-serif;
+}
 .success {
     color: green !important;
 }

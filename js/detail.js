@@ -13,6 +13,7 @@ async function getData() {
         document.getElementById('gerechtTitel').innerText = gerecht.Naam;
         const detailHTML = `
             <div class="card mb-3" id="override" style="max-width: 540px;">
+            <a class="return" href="index.html">x</a>
                 <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
                 <div class="card-body">
                     <h5 class="card-title">${gerecht.Naam}</h5>
@@ -22,7 +23,7 @@ async function getData() {
                         ${gerecht.Ingredienten.map(ingredient => `<li>${ingredient}</li>`).join('')}
                     </ul>
                     </p>
-                    <p class="card-text">Alleergenen: 
+                    <p class="card-text">Allergenen: 
                     <ul>
                         ${gerecht.Allergenen.map(allergenen => `<li>${allergenen}</li>`).join('')}
                     </ul>

@@ -23,7 +23,8 @@ body {
 }
 
 #aantal {
-    width: 2rem;
+    width: 2.5rem;
+    height: 2rem;
     background-color: var(--secondary-color);
     border: none;
     border-radius: 0.375rem;
