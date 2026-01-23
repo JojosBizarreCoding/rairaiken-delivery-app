@@ -23,6 +23,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
         if (response.ok) {
             resultDiv.textContent = 'Succes! Gebruiker geregistreerd!';
             resultDiv.className = 'success';
+            localStorage.setItem('token', result.token);
             e.target.reset();
             window.location.href = "index.html";
         } else {

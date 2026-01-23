@@ -3,6 +3,8 @@
 header('Content-Type: application/json');
 
 include_once '../config.php';
+require_once '../lib/jwt/JWT.php';
+use Firebase\JWT\JWT;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -22,10 +24,20 @@ try {
     ]);
     $gebruiker = $stmt->fetch();
     if ($gebruiker && password_verify($data['wachtwoord'], $gebruiker['Wachtwoord'])) {
-        echo json_encode(['message' => 'Login succesvol', 'user' => $gebruiker]);
-        session_start();
-        $_SESSION['GebruikerID'] = $gebruiker['GebruikerID'];
-        $_SESSION['Naam'] = $gebruiker['Naam'];
+        $key = getenv('JWT_SECRET');
+        $payload = [
+            'id' => $gebruiker['GebruikerID'],
+            'naam' => $gebruiker['Naam'],
+            'iat' => time(),
+            'exp' => time() + 60*60*24 // Token geldig voor 1 dag
+        ];
+        $jwt = JWT::encode($payload, $key, 'HS256');
+        echo json_encode(['token' => $jwt]);
+        echo json_encode([
+            'message' => 'Login succesvol',
+            'user' => $gebruiker,
+            'token' => $jwt
+        ]);
     } else {
         http_response_code(401);
         echo json_encode(['error' => 'Fout wachtwoord of email', 'email' => $data['email']]);

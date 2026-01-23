@@ -65,19 +65,31 @@ function getCookie(cname) {
   return "";
 } 
 
-function checkCookie() {
-  let SESSID = getCookie("PHPSESSID");
-  if (SESSID != "") {
-    console.log("Cookie gevonden: " + SESSID);
-  } else {
-    console.log("Geen cookie gevonden");
-    }
-  }
+
 
 function randomImage() {
   const randomIndex = Math.floor(Math.random() * images.length);
   return images[randomIndex];
 }
 
+function testJWT() {
+  const token = localStorage.getItem('token');
+  console.log('JWT Token:', token);
+  fetch('https://102710.stu.sd-lab.nl/rairaiken/api/validatetoken.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ token: token })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Token validation response:', data);
+  })
+  .catch(error => {
+    console.error('Error validating token:', error);
+  });
+}
+
 getData(url);
-checkCookie();
+testJWT();

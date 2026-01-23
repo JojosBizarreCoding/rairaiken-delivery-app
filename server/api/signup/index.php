@@ -4,6 +4,8 @@ header('Content-Type: application/json');
 
 
 include_once '../config.php';
+require_once '../lib/jwt/JWT.php';
+use Firebase\JWT\JWT;
 
 header('Content-Type: application/json');
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -67,10 +69,19 @@ try {
         ':huisnummer' => $data['huisnummer'],
         ':postcode' => $data['postcode']
     ]);
-    session_start();
-    $_SESSION['GebruikerID'] = $pdo->lastInsertId();
-    $_SESSION['Naam'] = $data['naam'];
-    echo json_encode(['message' => 'Gebruiker succesvol geregistreerd']);
+    $userId = $pdo->lastInsertId();
+    $key = getenv('JWT_SECRET');
+    $payload = [
+        'id' => $userId,
+        'naam' => $data['naam'],
+        'iat' => time(),
+        'exp' => time() + 60*60*24 // 1 dag geldig
+    ];
+    $jwt = JWT::encode($payload, $key, 'HS256');
+    echo json_encode([
+        'message' => 'Gebruiker succesvol geregistreerd',
+        'token' => $jwt
+    ]);
 
 } catch (PDOException $e) {
     http_response_code(500);
