@@ -1,4 +1,8 @@
 @font-face {
-    font-family: fauxjapanese;
-    src: url('../assets/japan-kimono-font/fauxjapanese.otf'); 
-  }
+  font-family: fauxjapanese;
+  src: url('../assets/japan-kimono-font/fauxjapanese.otf');
+}
+@font-face {
+  font-family: 'Staatliches';
+  src: url('../assets/staatliches/staatliches-regular.ttf');
+}

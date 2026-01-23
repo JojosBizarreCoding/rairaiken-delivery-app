@@ -1,6 +1,7 @@
 .navbar {
     background-color: var(--main-bg-color);
     border-bottom: 2px solid black;
+    font-family: 'Staatliches', sans-serif;
 }
 
 .nav-link {
