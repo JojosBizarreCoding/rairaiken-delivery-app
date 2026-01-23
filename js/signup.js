@@ -24,6 +24,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
             resultDiv.textContent = 'Succes! Gebruiker geregistreerd!';
             resultDiv.className = 'success';
             e.target.reset();
+            window.location.href = "index.html";
         } else {
             resultDiv.textContent = 'Error: ' + JSON.stringify(result, null, 2);
             resultDiv.className = 'error';
