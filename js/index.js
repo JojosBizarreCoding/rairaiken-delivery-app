@@ -15,35 +15,41 @@ async function getData() {
     let i = 0;
 
     for (let gerecht of gerechten) {
-      const cardHTML = `<div class="card" id="override">
-            <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
-            <div class="card-body d-flex flex-column justify-content-between">
-            <div>
-                <h5 class="card-title">${gerecht.Naam}</h5>
-                <p class="card-text">${gerecht.Beschrijving}</p>
-            </div>
-            <div class="d-flex align-items-center">
-                <input type="number" id="aantal" name="aantal" min="1" />
-                <a href="#" class="btn btn-primary">Bestel</a>
-            </div>
-            </div>
-        </div>`;
+      const cardHTML = `
+            <div class="card" id="override">
+              <a href="detail.html?id=${gerecht.GerechtID}" class="detail-link" style="text-decoration: none; color: inherit;">
+                <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
+              </a>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <a href="detail.html?id=${gerecht.GerechtID}" class="detail-link" style="text-decoration: none; color: inherit;">
+                  <div>
+                    <h5 class="card-title">${gerecht.Naam}</h5>
+                    <p class="card-text">${gerecht.Beschrijving}</p>
+                  </div>
+                </a>
+                <div class="d-flex align-items-center">
+                  <input type="number" id="aantal" name="aantal" min="1" />
+                  <button class="btn btn-primary" id="bestelButton">Bestel</button>
+                </div>
+              </div>
+            </div>`;
       const imgHTML = `<img src="../img/banners/${randomImage()}" alt="...">`;
       counter += 1;
-      
-        if (counter >= 6){
-          if (i > images.length){
-            i = 0;
-            container.innerHTML += `${cardHTML}${imgHTML}`
-          } else {
-            counter = 0;
-            i += 1;
-            container.innerHTML += `${cardHTML}${imgHTML}`
-          }
 
+      if (counter >= 6) {
+        if (i > images.length) {
+          i = 0;
+          container.innerHTML += `${cardHTML}${imgHTML}`;
         } else {
-    container.innerHTML += cardHTML; }
+          counter = 0;
+          i += 1;
+          container.innerHTML += `${cardHTML}${imgHTML}`;
         }
+
+      } else {
+        container.innerHTML += cardHTML;
+      }
+    }
   } catch (error) {
     console.error(error.message);
   }
@@ -53,7 +59,7 @@ function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -63,7 +69,7 @@ function getCookie(cname) {
     }
   }
   return "";
-} 
+}
 
 
 
@@ -82,13 +88,13 @@ function testJWT() {
     },
     body: JSON.stringify({ token: token })
   })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Token validation response:', data);
-  })
-  .catch(error => {
-    console.error('Error validating token:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+      console.log('Token validation response:', data);
+    })
+    .catch(error => {
+      console.error('Error validating token:', error);
+    });
 }
 
 getData(url);

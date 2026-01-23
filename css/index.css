@@ -32,7 +32,7 @@ body {
 
 .card-img-top {
     height: 12rem !important;
-    object-fit: fill !important;
+    object-fit: contain !important;
 }
 
 .title {
@@ -43,4 +43,8 @@ body {
 
 .btn {
     width: 8rem;
+}
+.detail-link {
+    text-decoration: none;
+    color: inherit;
 }
