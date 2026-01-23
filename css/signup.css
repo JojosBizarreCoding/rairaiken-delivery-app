@@ -1,5 +1,10 @@
 @import url(colors.css);
 @import url('navbar.css');
+@import url('buttons.css');
+
+::-webkit-scrollbar {
+    display: none;
+}
 
 body {
     overflow: hidden;
@@ -12,11 +17,6 @@ body {
     margin: auto !important;
     padding: 3rem;
     border-radius: 1rem;
-}
-.btn-primary {
-    background-color: var(--secondary-color) !important;
-    color: black !important;
-    border: none !important;
 }
 
 .vertical-center {
