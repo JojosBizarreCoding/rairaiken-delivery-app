@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 $data = json_decode(file_get_contents('php://input'), true);
-if (!isset($data['email'], $data['wachtwoord'])) {
+if (!isset($data['email']) || !isset($data['wachtwoord'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Ongeldige invoer']);
     exit;
@@ -32,7 +32,6 @@ try {
             'exp' => time() + 60*60*24 // Token geldig voor 1 dag
         ];
         $jwt = JWT::encode($payload, $key, 'HS256');
-        echo json_encode(['token' => $jwt]);
         echo json_encode([
             'message' => 'Login succesvol',
             'user' => $gebruiker,
