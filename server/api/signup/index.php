@@ -22,6 +22,14 @@ if (
     exit;
 }
 $data['email'] = strtolower($data['email']);
+$data['postcode'] = strtoupper($data['postcode']);
+$emailDuplicateCheck = $pdo->prepare("SELECT COUNT(*) FROM Gebruikers WHERE Email = :email");
+$emailDuplicateCheck->execute([':email' => $data['email']]);
+if ($emailDuplicateCheck->fetchColumn() > 0) {
+    http_response_code(409);
+    echo json_encode(['error' => 'E-mailadres is al in gebruik']);
+    exit;
+}
 switch (true) {
     case !filter_var($data['email'], FILTER_VALIDATE_EMAIL):
         http_response_code(400);
@@ -43,7 +51,7 @@ switch (true) {
         http_response_code(400);
         echo json_encode(['error' => 'Ongeldig telefoonnummer']);
         exit;
-    case !is_numeric($data['huisnummer']) || (int)$data['huisnummer'] <= 0:
+    case !is_numeric($data['huisnummer']) || (int) $data['huisnummer'] <= 0:
         http_response_code(400);
         echo json_encode(['error' => 'Ongeldig huisnummer']);
         exit;
@@ -59,7 +67,11 @@ try {
         ':huisnummer' => $data['huisnummer'],
         ':postcode' => $data['postcode']
     ]);
+    session_start();
+    $_SESSION['GebruikerID'] = $pdo->lastInsertId();
+    $_SESSION['Naam'] = $data['naam'];
     echo json_encode(['message' => 'Gebruiker succesvol geregistreerd']);
+
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Databasefout: ' . $e->getMessage()]);
