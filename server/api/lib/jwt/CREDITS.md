@@ -1,0 +1,1 @@
+From https://github.com/firebase/php-jwt, since I can't use composer on the server.
