@@ -23,7 +23,19 @@ body {
 margin: 1rem;
 }
 
-#emailHelp {
+#disclaimer {
     font-size: 1rem;
+}
+
+#result {
+    font-size: 1rem;
+}
+
+.success {
+    color: green !important;
+}
+
+.error {
+    color: red !important;
 }
 

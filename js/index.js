@@ -27,8 +27,7 @@ async function getData() {
         </div>`;
       const imgHTML = `<img src="../img/banners/${randomImage()}" alt="...">`;
       counter += 1;
-        console.log(counter);
-
+      
         if (counter >= 6){
           if (i > images.length){
             i = 0;
@@ -47,9 +46,19 @@ async function getData() {
   }
 }
 
-getData(url);
+function checkCookie() {
+  let SESSID = getCookie("PHPSESSID");
+  if (SESSID != "") {
+    console.log("Cookie gevonden: " + SESSID);
+  } else {
+    console.log("Geen cookie gevonden");
+    }
+  }
 
 function randomImage() {
   const randomIndex = Math.floor(Math.random() * images.length);
   return images[randomIndex];
 }
+
+getData(url);
+checkCookie();

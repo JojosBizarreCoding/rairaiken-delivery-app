@@ -23,22 +23,49 @@
   </nav>
 
   <div class="vertical-center">
-  <div class="form-container">
-      <form id="signupForm">
-      <div class="form-group">
-        <label for="InputEmail1">Email address</label>
-        <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
-          placeholder="Enter email">
-        <label id="emailHelp">We'll never share your email with anyone else.</label>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-container">
+      <form id="signupForm" novalidate>
+        <div class="form-group">
+          <label for="naam">Naam</label>
+          <input type="text" class="form-control" id="naam" name="naam" placeholder="Vul naam in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefoonnummer">Telefoonnummer</label>
+          <input type="tel" class="form-control" id="telefoonnummer" name="telefoonnummer" placeholder="Vul telefoonnummer in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email adres</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Vul email in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="straatnaam">Straatnaam</label>
+          <input type="text" class="form-control" id="straatnaam" name="straatnaam" placeholder="Vul straatnaam in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="huisnummer">Huisnummer</label>
+          <input type="text" class="form-control" id="huisnummer" name="huisnummer" placeholder="Vul huisnummer in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="postcode">Postcode</label>
+          <input type="text" class="form-control" id="postcode" name="postcode" placeholder="Vul postcode in" required>
+        </div>
+
+        <div class="form-group">
+          <label for="wachtwoord">Wachtwoord</label>
+          <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord" required>
+          <label id="disclaimer">We zullen je login gegevens nooit delen met anderen.</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registreren</button>
       </form>
+      <p id="result" class="mt-3"></p>
+    </div>
   </div>
-</div>
-  </body>
+</body>
 
 </html>

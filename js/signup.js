@@ -1,3 +1,4 @@
+
 document.getElementById('signupForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -9,7 +10,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
     resultDiv.className = '';
     
     try {
-        const response = await fetch('../signup/index.php', {
+        const response = await fetch('https://102710.stu.sd-lab.nl/rairaiken/api/signup/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,7 +21,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
         const result = await response.json();
         
         if (response.ok) {
-            resultDiv.textContent = 'Succes! ' + JSON.stringify(result, null, 2);
+            resultDiv.textContent = 'Succes! Gebruiker geregistreerd!';
             resultDiv.className = 'success';
             e.target.reset();
         } else {
