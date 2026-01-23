@@ -22,7 +22,10 @@ async function getData() {
                 <h5 class="card-title">${gerecht.Naam}</h5>
                 <p class="card-text">${gerecht.Beschrijving}</p>
             </div>
+            <div class="d-flex align-items-center">
+                <input type="number" id="aantal" name="aantal" min="1" />
                 <a href="#" class="btn btn-primary">Bestel</a>
+            </div>
             </div>
         </div>`;
       const imgHTML = `<img src="../img/banners/${randomImage()}" alt="...">`;
