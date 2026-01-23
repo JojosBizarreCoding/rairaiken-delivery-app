@@ -12,10 +12,41 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 $data = json_decode(file_get_contents('php://input'), true);
-if (!isset($data['naam'], $data['telefoonnummer'], $data['email'], $data['wachtwoord'], $data['straatnaam'], $data['huisnummer'], $data['postcode'])) {
+if (
+    empty($data['naam']) ||
+    empty($data['wachtwoord']) ||
+    empty($data['straatnaam'])
+) {
     http_response_code(400);
     echo json_encode(['error' => 'Ongeldige invoer']);
     exit;
+}
+$data['email'] = strtolower($data['email']);
+switch (true) {
+    case !filter_var($data['email'], FILTER_VALIDATE_EMAIL):
+        http_response_code(400);
+        echo json_encode(['error' => 'Ongeldig e-mailadres']);
+        exit;
+    case strlen($data['wachtwoord']) < 8:
+        http_response_code(400);
+        echo json_encode(['error' => 'Wachtwoord moet minimaal 8 tekens lang zijn']);
+        exit;
+    case !preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/', $data['wachtwoord']):
+        http_response_code(400);
+        echo json_encode(['error' => 'Wachtwoord moet minimaal één hoofdletter, één kleine letter, één cijfer en één speciaal teken bevatten']);
+        exit;
+    case !preg_match('/[1-9][0-9]{3}\s?[A-Z]{2}/', $data['postcode']):
+        http_response_code(400);
+        echo json_encode(['error' => 'Ongeldige postcode']);
+        exit;
+    case !preg_match('/0[1-9][0-9]{8}/', $data['telefoonnummer']):
+        http_response_code(400);
+        echo json_encode(['error' => 'Ongeldig telefoonnummer']);
+        exit;
+    case !is_numeric($data['huisnummer']) || (int)$data['huisnummer'] <= 0:
+        http_response_code(400);
+        echo json_encode(['error' => 'Ongeldig huisnummer']);
+        exit;
 }
 try {
     $stmt = $pdo->prepare("INSERT INTO Gebruikers (Naam, Telefoonnummer, Email, Wachtwoord, Straatnaam, Huisnummer, Postcode) VALUES (:naam, :telefoonnummer, :email, :wachtwoord, :straatnaam, :huisnummer, :postcode)");
