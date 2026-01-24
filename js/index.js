@@ -40,7 +40,7 @@ async function getData() {
                     <option value="9">9</option>
                     <option value="10">10</option>
                   </select>
-                  <button class="btn btn-primary" id="bestelButton">Bestel</button>
+                  <button class="btn btn-primary" id="bestelButton" onclick="addToCart(${gerecht.GerechtID})">Bestel</button>
                 </div>
               </div>
             </div>`;

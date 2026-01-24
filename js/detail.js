@@ -6,7 +6,7 @@ async function getData() {
     try {
         const response = await fetch(`${url}?id=${idParam}`);
         if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+            throw new Error(`Response status: ${response.status}`);
         }
         const gerecht = await response.json();
         console.log(gerecht);
@@ -29,8 +29,22 @@ async function getData() {
                     </ul>
                     </p>
                     <div class="d-flex align-items-center">
-                        <input type="number" id="aantal" name="aantal" min="1" value="1" class="form-control me-2" />
-                        <button class="btn btn-primary" id="bestelButton">Bestel</button>
+                        <select class="aantal" id="aantal">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                        <button class="btn btn-primary" id="bestelButton" onclick="addToCart(${gerecht.GerechtID})">Bestel</button>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <textarea class="form-control" id="opmerkingen" rows="3" placeholder="Opmerkingen..."></textarea>
                     </div>
                 </div>
             </div>`;
