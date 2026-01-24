@@ -8,22 +8,28 @@
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/signup.css">
   <script src="../js/signup.js" defer></script>
+  <script src="../js/nav.js" defer type="module"></script>
 </head>
 
 <body>
   <nav class="navbar">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"><img src="../img/logo.svg"></a>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="index.html" class="nav-link">Home</a>
-          </li>
-        </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item" id="signup">
+          <a href="signup.html" class="nav-link">Sign-up</a>
+        </li>
+        <li class="nav-item" id="login">
+          <a href="login.html" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item nav-link" id="naam">
+          <!-- Gebruikersnaam wordt hier weergegeven na inloggen -->
+        </li>
+      </ul>
     </div>
   </nav>
-
   <div class="vertical-center">
-  <p class="login">Al een acount? <a href="login.html">Log in.</a></p>
+    <p class="login">Al een acount? <a href="login.html">Log in.</a></p>
     <div class="form-container">
       <form id="signupForm" novalidate>
         <div class="form-group">
@@ -33,7 +39,8 @@
 
         <div class="form-group">
           <label for="telefoonnummer">Telefoonnummer</label>
-          <input type="tel" class="form-control" id="telefoonnummer" name="telefoonnummer" placeholder="Vul telefoonnummer in" required>
+          <input type="tel" class="form-control" id="telefoonnummer" name="telefoonnummer"
+            placeholder="Vul telefoonnummer in" required>
         </div>
 
         <div class="form-group">
@@ -43,12 +50,14 @@
 
         <div class="form-group">
           <label for="straatnaam">Straatnaam</label>
-          <input type="text" class="form-control" id="straatnaam" name="straatnaam" placeholder="Vul straatnaam in" required>
+          <input type="text" class="form-control" id="straatnaam" name="straatnaam" placeholder="Vul straatnaam in"
+            required>
         </div>
 
         <div class="form-group">
           <label for="huisnummer">Huisnummer</label>
-          <input type="text" class="form-control" id="huisnummer" name="huisnummer" placeholder="Vul huisnummer in" required>
+          <input type="text" class="form-control" id="huisnummer" name="huisnummer" placeholder="Vul huisnummer in"
+            required>
         </div>
 
         <div class="form-group">
@@ -58,7 +67,8 @@
 
         <div class="form-group">
           <label for="wachtwoord">Wachtwoord</label>
-          <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord" required>
+          <input type="password" class="form-control" id="wachtwoord" name="wachtwoord" placeholder="Wachtwoord"
+            required>
           <label id="disclaimer">We zullen je login gegevens nooit delen met anderen.</label>
         </div>
 
