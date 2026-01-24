@@ -16,9 +16,7 @@ function createWindow() {
 
   // In the main process.
   const win = new BrowserWindow({
-    width: 428, height: 926, resizable: false, webPreferences: {
-      preload: __dirname + '/preload.js'
-    }
+    width: 428, height: 926, resizable: false,
   });
   win.setAspectRatio(9 / 16);
   win.setFullScreenable(false);
