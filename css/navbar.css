@@ -7,3 +7,9 @@
 .nav-link {
     color: var(--secondary-color) !important;
 }
+
+.dropdown-menu {
+position: absolute !important;
+left: -3rem !important;
+background-color: var(--card-bg-color);
+}
