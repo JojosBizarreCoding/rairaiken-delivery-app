@@ -1,3 +1,7 @@
+import { addToCart } from './winkelwagen.js';
+
+window.addToCart = addToCart;
+
 const container = document.getElementById('cardContainer');
 const url = 'https://102710.stu.sd-lab.nl/rairaiken/api/gerecht/';
 const idParam = new URLSearchParams(window.location.search).get('id');
@@ -29,7 +33,7 @@ async function getData() {
                     </ul>
                     </p>
                     <div class="d-flex align-items-center">
-                        <select class="aantal" id="aantal">
+                        <select class="aantal" id="aantal-${gerecht.GerechtID}">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rairaiken Ramen</title>
+    <title>Rairaiken Ramen Winkelwagen</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/detail.css">
-    <script src="../js/detail.js" defer type="module"></script>
     <script src="../js/nav.js" defer type="module"></script>
+    <script src="../js/winkelwagen.js" defer type="module"></script>
 </head>
 
 <body>
@@ -30,9 +29,15 @@
         </div>
     </nav>
 
-    <h1 class="title" id="gerechtTitel">Gerecht</h1>
+    <h1 class="title">Winkelwagen</h1>
     <div class="container">
         <div class="row justify-content-between" id="cardContainer">
+        </div>
+        <div class="m-4 d-flex justify-content-center flex-column align-items-center">
+            <button class="btn btn-primary" onclick="plaatsBestelling();">Bestelling plaatsen</button>
+            <div class="alert alert-danger m-4" role="alert" id="errorMessage" style="display: none;">
+                <!-- Foutmelding wordt hier weergegeven -->
+            </div>
         </div>
     </div>
 

@@ -22,7 +22,7 @@ body {
     padding: 0;
 }
 
-#aantal {
+.aantal {
     width: 2.5rem;
     height: 2rem;
     background-color: var(--secondary-color);

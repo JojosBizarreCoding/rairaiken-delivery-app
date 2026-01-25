@@ -1,4 +1,7 @@
 import { validateToken } from "./validate_token.js";
+import { addToCart } from './winkelwagen.js';
+
+window.addToCart = addToCart;
 
 const container = document.getElementById('cardContainer');
 const images = ["ie11cats.jpg", "ie11cats2.png", "ie11joypolis.jpg", "ie11ramen.png"];
@@ -30,7 +33,7 @@ async function getData() {
                   </div>
                 </a>
                 <div class="d-flex align-items-center">
-                  <select class="aantal" id="aantal">
+                  <select class="aantal" id="aantal-${gerecht.GerechtID}">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

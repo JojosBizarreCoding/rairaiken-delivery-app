@@ -1,31 +1,64 @@
 <?php
 header('Content-Type: application/json');
 
-session_start();
-
 include_once '../config.php';
+
+// Include JWT libraries
+require_once '../lib/jwt/JWT.php';
+require_once '../lib/jwt/Key.php';
+require_once '../lib/jwt/JWTExceptionWithPayloadInterface.php';
+require_once '../lib/jwt/ExpiredException.php';
+require_once '../lib/jwt/SignatureInvalidException.php';
+require_once '../lib/jwt/BeforeValidException.php';
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+function validateJWT() {
+    $headers = function_exists('getallheaders') ? getallheaders() : [];
+    $authHeader = $headers['Authorization']
+        ?? $headers['authorization']
+        ?? ($_SERVER['HTTP_AUTHORIZATION'] ?? '')
+        ?? ($_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '');
+
+    if (!preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
+        http_response_code(401);
+        echo json_encode(['error' => 'Geen token (Authorization header) gevonden']);
+        exit;
+    }
+
+    $jwt = $matches[1];
+    $key = getenv('JWT_SECRET');
+
+    try {
+        $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
+        return $decoded->id; // Return the User ID from the token
+    } catch (Exception $e) {
+        http_response_code(401);
+        echo json_encode(['error' => 'Ongeldig token', 'details' => $e->getMessage()]);
+        exit;
+    }
+}
+
+// Authenticate and get User ID
+$userId = validateJWT();
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
-        getBestellingen($pdo);
+        getBestellingen($pdo, $userId);
         break;
     case 'POST':
         $data = json_decode(file_get_contents('php://input'), true);
-        createBestelling($pdo, $data);
+        createBestelling($pdo, $data, $userId);
         break;
     default:
         http_response_code(405);
-        echo json_encode(['error' => 'Methode niet toegestaan']);;
+        echo json_encode(['error' => 'Methode niet toegestaan']);
         exit;
 }
 
-function getBestellingen(PDO $pdo) {
-    if (empty($_SESSION['GebruikerID'])) {
-        http_response_code(401);
-        echo json_encode(['error' => 'Niet ingelogd']);
-        return;
-    }
-
+function getBestellingen(PDO $pdo, $gebruikerId) {
+    // Removed session check, using $gebruikerId passed from token
     try {
         // Haal alle bestellingen van deze gebruiker op
         $stmt = $pdo->prepare("
@@ -34,7 +67,7 @@ function getBestellingen(PDO $pdo) {
             WHERE b.GebruikerID = :gebruikerId
             ORDER BY b.BesteldOp DESC
         ");
-        $stmt->execute(['gebruikerId' => $_SESSION['GebruikerID']]);
+        $stmt->execute(['gebruikerId' => $gebruikerId]);
         $bestellingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$bestellingen) {
@@ -91,19 +124,14 @@ function getBestellingen(PDO $pdo) {
     }
 }
 
-function createBestelling($pdo, $data) {
-    if (empty($_SESSION['GebruikerID'])) {
-        http_response_code(401);
-        echo json_encode(['error' => 'Niet ingelogd']);
-        return;
-    }
+function createBestelling($pdo, $data, $gebruikerId) {
     try {
         // Bestelling aanmaken
         $stmt = $pdo->prepare("
             INSERT INTO Bestellingen (GebruikerID, BesteldOp)
             VALUES (:gebruikerId, NOW())
         ");
-        $stmt->execute(['gebruikerId' => $_SESSION['GebruikerID']]);
+        $stmt->execute(['gebruikerId' => $gebruikerId]);
         $bestellingId = $pdo->lastInsertId();
 
         // Regels toevoegen
