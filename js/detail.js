@@ -20,14 +20,14 @@ async function getData() {
             <a class="return" href="index.html">x</a>
                 <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
                 <div class="card-body">
-                    <h5 class="card-title">${gerecht.Naam}</h5>
+                    <h4 class="card-title">${gerecht.Naam}</h4>
                     <p class="card-text">${gerecht.Beschrijving}</p>
-                    <p class="card-text">Ingrediënten:
+                    <p class="card-text"><h5>Ingrediënten:</h5>
                     <ul>
                         ${gerecht.Ingredienten.map(ingredient => `<li>${ingredient}</li>`).join('')}
                     </ul>
                     </p>
-                    <p class="card-text">Allergenen: 
+                    <p class="card-text"><h5>Allergenen:</h5> 
                     <ul>
                         ${gerecht.Allergenen.map(allergenen => `<li>${allergenen}</li>`).join('')}
                     </ul>
