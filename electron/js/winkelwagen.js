@@ -53,6 +53,8 @@ async function getGerechten() {
                   <div>
                     <h5 class="card-title">${gerecht.Naam}</h5>
                     <p class="card-text">${gerecht.Beschrijving}</p>
+                    <p class="card-text">Aantal: ${item.aantal}</p>
+                    <p class="card-text">Opmerking: ${item.opmerking}</p>
                   </div>
                 </span>
                   <button class="btn btn-danger" onclick="removeFromCart(${gerechtID}, ${item.aantal}, '${item.opmerking}')">Verwijder</button>
