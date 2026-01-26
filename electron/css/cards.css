@@ -1,0 +1,12 @@
+
+#override {
+    width: 45%;
+    margin: 10px;
+    background-color: var(--card-bg-color);
+    padding: 0;
+}
+
+.card-img-top {
+    height: 12rem !important;
+    object-fit: contain !important;
+}

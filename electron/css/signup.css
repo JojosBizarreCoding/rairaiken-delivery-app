@@ -2,14 +2,12 @@
 @import url('navbar.css');
 @import url('buttons.css');
 @import url('fonts.css');
+@import url('body.css');
 
 ::-webkit-scrollbar {
     display: none;
 }
 
-body {
-    background-color: var(--main-bg-color);
-}
 
 .form-container {
     font-size: 1.5rem;

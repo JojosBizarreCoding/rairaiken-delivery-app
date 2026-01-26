@@ -4,6 +4,12 @@
   initial-value: #403048;
 }
 
+@property --main-bg-color-dark {
+    syntax: "<color>";
+  inherits: false;
+  initial-value: #302030;
+}
+
 @property --card-bg-color {
     syntax: "<color>";
   inherits: false;
@@ -14,5 +20,11 @@
     syntax: "<color>";
   inherits: false;
   initial-value: #C0A840;
+}
+
+@property --secondary-color-dark {
+    syntax: "<color>";
+  inherits: false;
+  initial-value: #A08030;
 }
 

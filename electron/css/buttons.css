@@ -5,10 +5,38 @@
     color: black !important;
     border: none !important;
 }
+.btn-primary:active {
+    background-color: var(--secondary-color-dark) !important;
+    color: black !important;
+    border: none !important;
+}
 
 .btn-secondary {
     background-color: var(--main-bg-color) !important;
     color: white !important;
     border: none !important;
     width: auto !important;
+}
+
+.btn-secondary:active {
+    background-color: var(--main-bg-color-dark) !important;
+    color: white !important;
+    border: none !important;
+    width: auto !important;
+}
+
+.aantal {
+    width: 2.5rem;
+    height: 2rem;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 0.375rem;
+    margin: 0.5rem;
+}
+
+#cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
 }
