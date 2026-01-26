@@ -3,7 +3,6 @@ header('Content-Type: application/json');
 
 include_once '../config.php';
 
-// Include JWT libraries
 require_once '../lib/jwt/JWT.php';
 require_once '../lib/jwt/Key.php';
 require_once '../lib/jwt/JWTExceptionWithPayloadInterface.php';
@@ -32,7 +31,7 @@ function validateJWT() {
 
     try {
         $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
-        return $decoded->id; // Return the User ID from the token
+        return $decoded->id;
     } catch (Exception $e) {
         http_response_code(401);
         echo json_encode(['error' => 'Ongeldig token', 'details' => $e->getMessage()]);
@@ -40,7 +39,6 @@ function validateJWT() {
     }
 }
 
-// Authenticate and get User ID
 $userId = validateJWT();
 
 switch ($_SERVER['REQUEST_METHOD']) {
@@ -58,7 +56,6 @@ switch ($_SERVER['REQUEST_METHOD']) {
 }
 
 function getBestellingen(PDO $pdo, $gebruikerId) {
-    // Removed session check, using $gebruikerId passed from token
     try {
         // Haal alle bestellingen van deze gebruiker op
         $stmt = $pdo->prepare("

@@ -104,7 +104,18 @@ async function plaatsBestelling() {
                 body: JSON.stringify({ regels: JSON.parse(bestelling) })
             });
             if (!response.ok) {
-                error = `Fout bij plaatsen bestelling: ${JSON.stringify(response.error)}`;
+                const errorData = await response.json();
+                console.error(`Response status: ${response.status}`, errorData);
+                if (errorData.error === 'Ongeldig token') {
+                    localStorage.removeItem('token');
+                    localStorage.setItem('ref', `{"page": "winkelwagen.html", "msg": "Login of maak een account aan om je bestelling te plaatsen."}`);
+                    window.location.href = 'login.html';
+                    return;
+                }
+                error = `Fout bij plaatsen bestelling: ${errorData.error}`;
+            } else {
+                // localStorage.removeItem("bestelling");
+                // window.location.href = 'bestelling-bevestiging.html';
             }
         } catch (err) {
             error = 'Fout bij plaatsen bestelling: ' + err.message;
@@ -112,6 +123,7 @@ async function plaatsBestelling() {
     } else {
         error = "Winkelwagen is leeg!";
     }
+    
     if (error) {
         errorMessageDiv.style.display = 'block';
         errorMessageDiv.textContent = error;
