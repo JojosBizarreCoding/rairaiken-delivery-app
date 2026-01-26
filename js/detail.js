@@ -17,7 +17,9 @@ async function getData() {
         document.getElementById('gerechtTitel').innerText = gerecht.Naam;
         const detailHTML = `
             <div class="card mb-3" id="override" style="max-width: 540px;">
-            <a class="return" href="index.html">x</a>
+            <a class="return" href="index.html">
+            <button type="button" class="btn-close" aria-label="Close"></button>
+            </a>
                 <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
                 <div class="card-body">
                     <h4 class="card-title">${gerecht.Naam}</h4>
