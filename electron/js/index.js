@@ -1,5 +1,5 @@
 import { validateToken } from "./validate_token.js";
-import { addToCart } from './winkelwagen.js';
+import { addToCart, updateCartBadge } from './winkelwagen.js';
 
 window.addToCart = addToCart;
 
@@ -78,3 +78,4 @@ function randomImage() {
 
 getData(url);
 validateToken();
+updateCartBadge();

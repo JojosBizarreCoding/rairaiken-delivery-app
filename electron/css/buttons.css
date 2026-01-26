@@ -5,3 +5,10 @@
     color: black !important;
     border: none !important;
 }
+
+.btn-secondary {
+    background-color: var(--main-bg-color) !important;
+    color: white !important;
+    border: none !important;
+    width: auto !important;
+}

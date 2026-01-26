@@ -23,6 +23,7 @@ function addToCart(gerechtID) {
         opmerking: opmerkingen
     });
     localStorage.setItem("bestelling", JSON.stringify(bestelling));
+    updateCartBadge()
 }
 
 async function getGerechten() {
@@ -133,8 +134,20 @@ async function plaatsBestelling() {
     }
 }
 
+function updateCartBadge() {
+    const badge = document.getElementById(`cartBadge`);
+    let bestelling = [];
+    try {
+        const parsed = JSON.parse(localStorage.getItem("bestelling"));
+        if (Array.isArray(parsed)) bestelling = parsed;
+    } catch (e) { 
+        console.error(e);
+    }
+    badge.innerText = bestelling.length;
+}
+
 if (window.location.pathname.endsWith('winkelwagen.html')) {
     getGerechten();
 }
 
-export { addToCart };
+export { addToCart, updateCartBadge};
