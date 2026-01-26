@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rairaiken Ramen</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/detail.css">
     <script src="../js/detail.js" defer type="module"></script>
     <script src="../js/nav.js" defer type="module"></script>
@@ -18,15 +17,32 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html"><img src="../img/logo.svg"></a>
-                <span class="nav-item" id="signup">
-                    <a href="signup.html" class="nav-link">Sign-up</a>
-                </span>
-                <span class="nav-item dropdown" id="naam">
-                    <!-- Gebruikersnaam wordt hier weergegeven na inloggen -->
-                </span>
+            <span class="nav-item" id="signup">
+                <a href="signup.html" class="nav-link">Sign-up</a>
+            </span>
+            <span class="nav-item dropdown" id="naam">
+                <!-- Gebruikersnaam wordt hier weergegeven na inloggen -->
+            </span>
             </ul>
         </div>
     </nav>
+
+    <a href="winkelwagen.html">
+        <button type="button" class="btn btn-secondary" id="cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart-dash"
+                viewBox="0 0 16 16">
+                <path d="M6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1z"></path>
+                <path
+                    d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0">
+                </path>
+            </svg>
+            <span id="cartBadge"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+                <span class="visually-hidden">producten in mandje</span>
+            </span>
+        </button>
+    </a>
 
     <h1 class="title" id="gerechtTitel">Gerecht</h1>
     <div class="container">

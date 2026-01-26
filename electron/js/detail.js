@@ -1,4 +1,4 @@
-import { addToCart } from './winkelwagen.js';
+import { addToCart, updateCartBadge } from './winkelwagen.js';
 
 window.addToCart = addToCart;
 
@@ -62,3 +62,4 @@ async function getData() {
 }
 
 getData();
+updateCartBadge();
