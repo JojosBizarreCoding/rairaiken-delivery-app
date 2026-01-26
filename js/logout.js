@@ -1,4 +1,5 @@
 function logout(){
-    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('gegevens');
     location.reload();
 }
