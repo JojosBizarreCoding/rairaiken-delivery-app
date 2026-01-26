@@ -44,23 +44,21 @@ async function getGerechten() {
         }
         const gerecht = await response.json();
         const cardHTML = `
-            <div class="card mb-3" id="override">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="../img/gerechten/${gerecht.Plaatje}" class="img-fluid rounded-start" alt="${gerecht.Beschrijving}">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
+            <div class="card" id="override">
+              <span class="detail-link" style="text-decoration: none; color: inherit;">
+                <img src="../img/gerechten/${gerecht.Plaatje}" class="card-img-top" alt="${gerecht.Beschrijving}">
+              </span>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <span class="detail-link" style="text-decoration: none; color: inherit;">
+                  <div>
                     <h5 class="card-title">${gerecht.Naam}</h5>
                     <p class="card-text">${gerecht.Beschrijving}</p>
-                    <p class="card-text">Aantal: ${item.aantal}</p>
-                    <p class="card-text">Opmerkingen: ${item.opmerking}</p>
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-danger" onclick="removeFromCart(${gerechtID}, ${item.aantal}, '${item.opmerking}')">Verwijder</button>
                   </div>
-                </div>
+                </span>
+                  <button class="btn btn-danger" onclick="removeFromCart(${gerechtID}, ${item.aantal}, '${item.opmerking}')">Verwijder</button>
               </div>
             </div>`;
+
         container.innerHTML += cardHTML;
 
     }
@@ -143,7 +141,11 @@ function updateCartBadge() {
     } catch (e) { 
         console.error(e);
     }
-    badge.innerText = bestelling.length;
+    let aantalItems = 0;
+    for (let i = 0; i < bestelling.length; i++) {
+        aantalItems += bestelling[i].aantal;
+    }
+    badge.innerText = aantalItems;
 }
 
 if (window.location.pathname.endsWith('winkelwagen.html')) {
