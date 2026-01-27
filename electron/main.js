@@ -13,7 +13,6 @@ app.on('ready', () => {
 });
 
 function createWindow() {
-
   // In the main process.
   const win = new BrowserWindow({
     width: 428, height: 926, resizable: false,
@@ -22,6 +21,10 @@ function createWindow() {
   win.setFullScreenable(false);
   win.setMenuBarVisibility(false);
   win.webContents.openDevTools();
+
+  win.webContents.setWindowOpenHandler(() => {
+    return { action: 'deny' };
+  });
 
   win.loadFile('./html/index.html');
 }
