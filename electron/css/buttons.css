@@ -14,14 +14,14 @@
 .btn-secondary {
     background-color: var(--main-bg-color) !important;
     color: white !important;
-    border: none !important;
+    border: var(--secondary-color) 1px solid !important;
     width: auto !important;
 }
 
 .btn-secondary:active {
     background-color: var(--main-bg-color-dark) !important;
     color: white !important;
-    border: none !important;
+    border: var(--secondary-color) 1px solid !important;
     width: auto !important;
 }
 
