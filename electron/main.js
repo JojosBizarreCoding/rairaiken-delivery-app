@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron')
+const path = require('path')
 
 console.log("Hello, World!");
 
@@ -13,9 +14,16 @@ app.on('ready', () => {
 });
 
 function createWindow() {
-  // In the main process.
   const win = new BrowserWindow({
-    width: 428, height: 926, resizable: false,
+    width: 428,
+    height: 926,
+    resizable: false,
+    icon: path.join(__dirname, 'img/icons', 
+      process.platform === 'win32' ? 'win.ico' :
+      process.platform === 'darwin' ? 'mac.icns' :
+      'linux.png'
+    ),
+    
   });
   win.setAspectRatio(9 / 16);
   win.setFullScreenable(false);

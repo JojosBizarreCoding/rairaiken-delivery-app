@@ -26,5 +26,17 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8"
+  },
+  "build": {
+    "icon": "assets/icon.png",
+    "win": {
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "icon": "assets/icon.png"
+    }
   }
 }
