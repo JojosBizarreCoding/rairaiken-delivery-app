@@ -18,10 +18,10 @@ function createWindow() {
     width: 428,
     height: 926,
     resizable: false,
-    icon: path.join(__dirname, 'img/icons', 
-      process.platform === 'win32' ? 'win.ico' :
-      process.platform === 'darwin' ? 'mac.icns' :
-      'linux.png'
+    icon: path.join(__dirname, 'build', 
+      process.platform === 'win32' ? 'icon.ico' :
+      process.platform === 'darwin' ? 'icon.icns' :
+      'icon.png'
     ),
     
   });
