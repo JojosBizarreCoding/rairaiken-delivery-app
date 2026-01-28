@@ -21,7 +21,7 @@ async function laatNaamZien() {
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Profiel</a></li>
-            <li><a class="dropdown-item" href="#">Order geschiedenis</a></li>
+            <li><a class="dropdown-item" href="bestelling.html">Zie bestelling</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><button class="dropdown-item" onclick="logout()">Log uit</button></li>
           </ul>`
