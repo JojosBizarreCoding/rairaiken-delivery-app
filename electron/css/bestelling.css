@@ -14,13 +14,8 @@ body {
     height: 25rem; 
 }
 
-.container {
-    margin: 1rem auto;
-}
-
 .bestelling-group {
-    margin: 0;
-    padding: 0;
+
     background-color: var(--secondary-color);
     margin-bottom: 20px;
 }
