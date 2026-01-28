@@ -25,7 +25,7 @@ function addToCart(gerechtID) {
         opmerking: opmerkingen
     });
     localStorage.setItem("bestelling", JSON.stringify(bestelling));
-    updateCartBadge()
+    updateCartBadge();
 }
 
 async function getGerechten() {
@@ -119,7 +119,7 @@ async function plaatsBestelling() {
                 }
                 error = `Fout bij plaatsen bestelling: ${errorData.error}`;
             } else {
-                // localStorage.removeItem("bestelling");
+                localStorage.removeItem("bestelling");
                 window.location.href = 'bestelling.html';
             }
         } catch (err) {
@@ -133,7 +133,7 @@ async function plaatsBestelling() {
         errorMessageDiv.style.display = 'block';
         errorMessageDiv.textContent = error;
     } else {
-        // localStorage.removeItem("bestelling");
+        localStorage.removeItem("bestelling");
         window.location.href = 'bestelling.html';
     }
 }
