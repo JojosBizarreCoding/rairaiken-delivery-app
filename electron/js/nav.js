@@ -20,7 +20,7 @@ async function laatNaamZien() {
             ${naam}
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Profiel</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Profiel</a></li> -->
             <li><a class="dropdown-item" href="bestelling.html">Zie bestelgeschiedenis</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><button class="dropdown-item" onclick="logout()">Log uit</button></li>
