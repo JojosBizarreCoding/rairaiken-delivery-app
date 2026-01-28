@@ -85,11 +85,12 @@ function getBestellingen(PDO $pdo, $gebruikerId) {
                    g.Naam,
                    g.Beschrijving,
                    g.Ingredienten,
-                   g.Allergenen
+                   g.Allergenen,
+                   g.Plaatje
             FROM BestellingRegel br
             JOIN Gerechten g ON g.GerechtID = br.GerechtID
             WHERE br.BestellingID IN ($bestellingIdPlaceholder) -- hier wordt de lijst van IDs ingevoegd, die is opgehaald ui de vorige query
-            ORDER BY br.BestellingID
+            ORDER BY br.BestellingID DESC
         ");
         $stmt->execute($bestellingIds);
         $regels = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -104,6 +105,7 @@ function getBestellingen(PDO $pdo, $gebruikerId) {
                 'Gerecht' => [
                     'Naam'         => $r['Naam'],
                     'Beschrijving' => $r['Beschrijving'],
+                    'Plaatje'      => $r['Plaatje'],
                     'Ingredienten' => json_decode($r['Ingredienten'], true),
                     'Allergenen'   => json_decode($r['Allergenen'], true),
                 ],

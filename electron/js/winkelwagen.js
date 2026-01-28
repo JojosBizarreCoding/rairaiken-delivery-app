@@ -1,4 +1,4 @@
-const apiUrl = "https://102710.stu.sd-lab.nl/rairaiken/api/" 
+const apiUrl = "https://102710.stu.sd-lab.nl/rairaiken/api/"
 
 window.removeFromCart = removeFromCart;
 window.plaatsBestelling = plaatsBestelling;
@@ -15,7 +15,9 @@ function addToCart(gerechtID) {
     try {
         const parsed = JSON.parse(localStorage.getItem("bestelling"));
         if (Array.isArray(parsed)) bestelling = parsed;
-    } catch (e) { }
+    } catch (e) {
+        console.error(e);
+    }
 
     bestelling.push({
         gerechtId: gerechtID,
@@ -31,8 +33,10 @@ async function getGerechten() {
     try {
         const parsed = JSON.parse(localStorage.getItem("bestelling"));
         if (Array.isArray(parsed)) bestelling = parsed;
-    } catch (e) { }
-    
+    } catch (e) {
+        console.error(e);
+    }
+
     console.log(bestelling);
 
     for (let item of bestelling) {
@@ -75,9 +79,9 @@ function removeFromCart(gerechtID, aantal, opmerking) {
         console.error(e);
     }
 
-    const gerechtTeVerwijderen = bestelling.findIndex(item => 
-        item.gerechtId == gerechtID && 
-        item.aantal == aantal && 
+    const gerechtTeVerwijderen = bestelling.findIndex(item =>
+        item.gerechtId == gerechtID &&
+        item.aantal == aantal &&
         item.opmerking == opmerking
     );
 
@@ -92,7 +96,7 @@ function removeFromCart(gerechtID, aantal, opmerking) {
 async function plaatsBestelling() {
     let error;
     const errorMessageDiv = document.getElementById('errorMessage');
-    
+
     if (localStorage.getItem("bestelling") && localStorage.getItem("bestelling") !== '[]') {
         try {
             const bestelling = localStorage.getItem("bestelling");
@@ -116,7 +120,7 @@ async function plaatsBestelling() {
                 error = `Fout bij plaatsen bestelling: ${errorData.error}`;
             } else {
                 // localStorage.removeItem("bestelling");
-                // window.location.href = 'bestelling-bevestiging.html';
+                window.location.href = 'bestelling.html';
             }
         } catch (err) {
             error = 'Fout bij plaatsen bestelling: ' + err.message;
@@ -124,13 +128,13 @@ async function plaatsBestelling() {
     } else {
         error = "Winkelwagen is leeg!";
     }
-    
+
     if (error) {
         errorMessageDiv.style.display = 'block';
         errorMessageDiv.textContent = error;
     } else {
         // localStorage.removeItem("bestelling");
-        // window.location.href = 'bestelling-bevestiging.html';
+        window.location.href = 'bestelling.html';
     }
 }
 
@@ -140,7 +144,7 @@ function updateCartBadge() {
     try {
         const parsed = JSON.parse(localStorage.getItem("bestelling"));
         if (Array.isArray(parsed)) bestelling = parsed;
-    } catch (e) { 
+    } catch (e) {
         console.error(e);
     }
     let aantalItems = 0;
@@ -154,4 +158,4 @@ if (window.location.pathname.endsWith('winkelwagen.html')) {
     getGerechten();
 }
 
-export { addToCart, updateCartBadge};
+export { addToCart, updateCartBadge };
