@@ -28,7 +28,6 @@ function createWindow() {
   win.setAspectRatio(9 / 16);
   win.setFullScreenable(false);
   win.setMenuBarVisibility(false);
-  win.webContents.openDevTools();
 
   win.webContents.setWindowOpenHandler(() => {
     return { action: 'deny' };
