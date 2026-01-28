@@ -34,6 +34,7 @@ async function getData() {
                         ${gerecht.Allergenen.map(allergenen => `<li>${allergenen}</li>`).join('')}
                     </ul>
                     </p>
+                    <h5>Prijs: &euro;0,00</h5>
                     <div class="d-flex align-items-center">
                         <select class="aantal" id="aantal-${gerecht.GerechtID}">
                             <option value="1">1</option>

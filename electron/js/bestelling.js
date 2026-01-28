@@ -29,6 +29,7 @@ for (const regel of bestellingen[0].Regels) {
                      <p class="card-title">${regel.Gerecht.Naam}</p>
                      <p class="card-text">Aantal: ${regel.Aantal}</p>
                      <p class="card-text">Opmerking: ${regel.Opmerking}</p>
+                     Prijs: &euro;0,00
                      <p><img class="small-image" src="../img/gerechten/${regel.Gerecht.Plaatje}" alt="${regel.Gerecht.Beschrijving}" /></p>
                 </div>
             </div>
@@ -65,6 +66,7 @@ async function showBestellingen() {
                     <p class="card-text">${regel.Gerecht.Beschrijving}</p>
                     <p class="card-text">Aantal: ${regel.Aantal}</p>
                     <p class="card-text">Opmerking: ${regel.Opmerking}</p>
+                    <p>Prijs: &euro;0,00</p>
                     <p><img src="../img/gerechten/${regel.Gerecht.Plaatje}" class="small-image" alt="${regel.Gerecht.Beschrijving}"></p>
                   </div>
                 </span>
