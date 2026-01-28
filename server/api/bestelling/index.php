@@ -125,7 +125,9 @@ function getBestellingen(PDO $pdo, $gebruikerId) {
 
 function createBestelling($pdo, $data, $gebruikerId) {
     try {
-        // Bestelling aanmaken
+        // Begin met bestelling aan te maken
+        $pdo->beginTransaction();
+
         $stmt = $pdo->prepare("
             INSERT INTO Bestellingen (GebruikerID, BesteldOp)
             VALUES (:gebruikerId, NOW())
@@ -133,23 +135,39 @@ function createBestelling($pdo, $data, $gebruikerId) {
         $stmt->execute(['gebruikerId' => $gebruikerId]);
         $bestellingId = $pdo->lastInsertId();
 
-        // Regels toevoegen
+        // Regels samenvoegen als ze hetzelfde gerecht en opmerking hebben
+        $merged = [];
+        foreach ($data['regels'] as $regel) {
+            $key = $regel['gerechtId'] . '|' . ($regel['opmerking'] ?? '');
+            if (!isset($merged[$key])) {
+                $merged[$key] = [
+                    'gerechtId' => $regel['gerechtId'],
+                    'aantal' => 0,
+                    'opmerking' => $regel['opmerking'] ?? null
+                ];
+            }
+            $merged[$key]['aantal'] += (int)$regel['aantal'];
+        }
+
         $regelStmt = $pdo->prepare("
             INSERT INTO BestellingRegel (BestellingID, GerechtID, Aantal, Opmerking)
             VALUES (:bestellingId, :gerechtId, :aantal, :opmerking)
         ");
-        foreach ($data['regels'] as $regel) {
+        foreach ($merged as $regel) {
             $regelStmt->execute([
                 'bestellingId' => $bestellingId,
                 'gerechtId'    => $regel['gerechtId'],
                 'aantal'       => $regel['aantal'],
-                'opmerking'    => $regel['opmerking'] ?? null
+                'opmerking'    => $regel['opmerking']
             ]);
         }
 
+        // Stop de bestelling in de database
+        $pdo->commit();
         echo json_encode(['success' => true, 'bestellingId' => $bestellingId]);
-    }
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
+        // Rollback bij fout, zodat er geen halve bestellingen in de databse komen
+        $pdo->rollBack();
         http_response_code(500);
         echo json_encode(['error' => 'Database fout: ' . $e->getMessage()]);
     }
