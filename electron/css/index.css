@@ -5,10 +5,6 @@
 @import url('cards.css');
 @import url('body.css');
 
-::-webkit-scrollbar {
-    display: none;
-}
-
 /* Ik weet niet precies wat er aan de hand is, maar zonder deze card class werkt de css niet zoals het hoort. */
 
 .card {

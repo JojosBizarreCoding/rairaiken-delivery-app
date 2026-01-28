@@ -18,34 +18,74 @@ async function getBestellingen() {
   return data;
 }
 
-async function showBestellingen() {
-  const bestellingenContainer = document.getElementById('container');
+async function getCurrentBestelling() {
   const bestellingen = await getBestellingen();
+  const gerechtenContainer = document.getElementById('current-bestelling-gerechten');
 
-  for (const bestelling of bestellingen) {
-    const bestellingGroup = document.createElement('div');
-    bestellingGroup.classList.add('bestelling-group');
-    groupTitle = document.createElement('h3');
-    groupTitle.textContent = `Bestelling #${bestelling.BestellingID} - ${bestelling.BesteldOp}`;
-    bestellingGroup.appendChild(groupTitle);
-
-    for (const regel of bestelling.Regels) {
-      const cardHTML = `
-            <div class="card" id="override">
-                <div class="card-body">
-                    <h5 class="card-title">${regel.Gerecht.Naam}</h5>
-                    <p class="card-text">Aantal: ${regel.Aantal}</p>
-                    <p class="card-text">Opmerking: ${regel.Opmerking}</p>
-                    <p class="small-image"><img src="../img/gerechten/${regel.Gerecht.Plaatje}" alt="${regel.Gerecht.Beschrijving}" /></p>
+for (const regel of bestellingen[0].Regels) {
+       const cardHTML = `
+             <div class="card" id="override">
+                 <div class="card-body">
+                     <p class="card-title">${regel.Gerecht.Naam}</p>
+                     <p class="card-text">Aantal: ${regel.Aantal}</p>
+                     <p class="card-text">Opmerking: ${regel.Opmerking}</p>
+                     <p><img class="small-image" src="../img/gerechten/${regel.Gerecht.Plaatje}" alt="${regel.Gerecht.Beschrijving}" /></p>
                 </div>
             </div>
         `;
-      bestellingGroup.innerHTML += cardHTML;
+      gerechtenContainer.innerHTML += cardHTML;
     }
 
-    bestellingenContainer.appendChild(bestellingGroup);
+}
+
+async function showBestelDatums() {
+  const bestellingenContainer = document.getElementById('container');
+  const bestellingen = await getBestellingen();
+  const bestellingGroup = document.getElementById('bestelling-group');
+
+  for (const bestelling of bestellingen) {
+    groupTitle = bestellingGroup.innerHTML += `<option value="${bestelling.BestellingID}">Bestelling #${bestelling.BestellingID} - ${bestelling.BesteldOp}</option>`;
   }
 }
 
-showBestellingen();
+async function showBestellingen() {
+  const gerechtenContainer = document.getElementById('bestelling-gerechten');
+  const select = document.getElementById('bestelling-group');
+  gerechtenContainer.innerHTML = '';
+  let selectedOption = select.selectedIndex;
+  const bestellingen = await getBestellingen(); 
+
+    for (const regel of bestellingen[selectedOption].Regels) {
+       const cardHTML = `
+              <div class="card" id="override">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <span class="detail-link" style="text-decoration: none; color: inherit;">
+                  <div>
+                    <p class="card-title">${regel.Gerecht.Naam}</p>
+                    <p class="card-text">${regel.Gerecht.Beschrijving}</p>
+                    <p class="card-text">Aantal: ${regel.Aantal}</p>
+                    <p class="card-text">Opmerking: ${regel.Opmerking}</p>
+                    <p><img src="../img/gerechten/${regel.Gerecht.Plaatje}" class="small-image" alt="${regel.Gerecht.Beschrijving}"></p>
+                  </div>
+                </span>
+              </div>
+            </div>
+        `;
+      gerechtenContainer.innerHTML += cardHTML;
+    }
+}
+
+function initMap() {
+  var map = L.map('map').setView([51.9274, 4.4774], 17);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+var marker = L.marker([51.9274, 4.4774]).addTo(map);
+marker.bindPopup("<b>Rairaken Ramen</b><br>Vanaf hier bezorgd.").openPopup();
+}
+
+showBestelDatums();
+getCurrentBestelling()
+initMap();
 getBestellingen().then(data => console.log(data)).catch(error => console.error(error));

@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rairaiken Ramen</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/bestelling.css">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
     <script src="../js/bestelling.js" defer></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
 </head>
 
 <body>
@@ -30,10 +35,25 @@
         </div>
     </nav>
 
-    <p>Uw order is onderweg.</p>
+    <h1>Uw huidige bestelling is onderweg.</h1>
+    <div class="currentOrder">
+        <h2>Huidige bestelling</h2>
+        <div id="current-bestelling-gerechten" class="row justify-content-between">
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+
     <div class="container">
+        <h2>Oude bestellingen</h2>
         <div class="row" id="container">
-            <!-- Gerechten will be dynamically inserted here -->
+            <select id="bestelling-group" class="bestelling-group">
+            </select>
+            <button type="button" onclick="showBestellingen()" class="btn btn-primary">Bekijk datum</button>
+
+            <div id="bestelling-gerechten">
+            </div>
         </div>
     </div>
 </body>

@@ -4,11 +4,6 @@
 @import url('fonts.css');
 @import url('body.css');
 
-::-webkit-scrollbar {
-    display: none;
-}
-
-
 .form-container {
     font-size: 1.5rem;
     background-color: var(--card-bg-color) !important;
