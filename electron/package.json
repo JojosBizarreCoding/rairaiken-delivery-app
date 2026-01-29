@@ -1,6 +1,6 @@
 {
   "name": "rairaiken-delivery-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "homepage": "https://github.com/JojosBizarreCoding/rairaiken-delivery-app#readme",
   "bugs": {
@@ -33,10 +33,12 @@
       "icon": "assets/icon.ico"
     },
     "mac": {
-      "icon": "assets/icon.icns"
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.utilities"
     },
     "linux": {
-      "icon": "assets/icon.png"
+      "icon": "assets/icon.png",
+      "category": "Utility"
     }
   }
 }
