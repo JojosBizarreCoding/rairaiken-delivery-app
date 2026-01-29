@@ -30,9 +30,9 @@ async function getData() {
                   <div>
                     <h5 class="card-title">${gerecht.Naam}</h5>
                     <p class="card-text">${gerecht.Beschrijving}</p>
-                    <p class="card-text">Prijs: &euro;0,00</p>
                   </div>
                 </a>
+                <div>Prijs: &euro;0,00</div>
                 <div class="d-flex align-items-center">
                   <select class="aantal" id="aantal-${gerecht.GerechtID}">
                     <option value="1">1</option>

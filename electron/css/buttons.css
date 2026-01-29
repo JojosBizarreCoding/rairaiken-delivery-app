@@ -14,7 +14,7 @@
 .btn-secondary {
     background-color: var(--main-bg-color) !important;
     color: white !important;
-    border: var(--secondary-color) 1px solid !important;
+    border: var(--secondary-color) 0.2rem solid !important;
     width: auto !important;
 }
 
